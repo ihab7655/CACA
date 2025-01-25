@@ -160,6 +160,12 @@
         .btn-group .continue-button:hover i {
             color: #ffffff;
         }
+        #error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
         .info-table {
             background-color: #ffffff;
             padding: 20px;
@@ -241,6 +247,7 @@
             <button><i class="fas fa-route"></i> Transit</button>
             <button><i class="fas fa-graduation-cap"></i> Study</button>
             <button class="continue-button"><i class="fas fa-arrow-right"></i> Continue</button>
+            <p id="error-message">Please select your citizenship and the reason for your travel before proceeding.</p>
         </div>
     </div>
 
@@ -305,10 +312,12 @@
         document.querySelector('.continue-button').addEventListener('click', function () {
             const country = document.getElementById('country-select').value;
             const selectedReason = document.querySelector('.btn-group button.selected');
+            const errorMessage = document.getElementById('error-message');
 
             if (!country || !selectedReason) {
-                alert('Please select your citizenship and the reason for your travel before proceeding.');
+                errorMessage.style.display = 'block';
             } else {
+                errorMessage.style.display = 'none';
                 alert('Proceeding to the next step!');
             }
         });
