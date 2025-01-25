@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canada Travel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #edebeb;
+            color: #333;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo {
+            width: 120px;
+            height: auto;
+        }
+        .language-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .language-dropdown button {
+            background-color: #ffffff;
+            color: #333;
+            border: 2px solid #ccc;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .language-dropdown button img {
+            width: 16px;
+            height: 12px;
+        }
+        .language-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            z-index: 1;
+            border: 1px solid #ccc;
+        }
+        .language-dropdown-content a {
+            color: #333;
+            padding: 10px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        .language-dropdown-content a img {
+            width: 16px;
+            height: 12px;
+        }
+        .language-dropdown-content a:hover {
+            background-color: #f0f0f0;
+        }
+        .language-dropdown:hover .language-dropdown-content {
+            display: block;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        .container h1, .container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .styled-select select {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 2px solid #003366;
+            border-radius: 8px;
+            background-color: #ffffff;
+            color: #003366;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .btn-group button {
+            background-color: #ffffff;
+            color: #003366;
+            border: 2px solid #003366;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 80%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-group button.selected {
+            background-color: #003366;
+            color: #ffffff;
+        }
+        .btn-group button i {
+            font-size: 20px;
+            color: #007bff;
+        }
+        .btn-group button:hover {
+            background-color: #003366;
+            color: #ffffff;
+        }
+        .btn-group button:hover i {
+            color: #ffffff;
+        }
+        .btn-group .continue-button {
+            background-color: #ffffff;
+            color: #003366;
+            border: 2px solid #003366;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto 0;
+            width: auto;
+            max-width: 200px;
+        }
+        .btn-group .continue-button i {
+            font-size: 16px;
+            color: #007bff;
+            margin-right: 5px;
+        }
+        .btn-group .continue-button:hover {
+            background-color: #003366;
+            color: #ffffff;
+        }
+        .btn-group .continue-button:hover i {
+            color: #ffffff;
+        }
+        .info-table {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 800px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .info-table .bold {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .steps-container {
+            margin-top: 20px;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .step-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #008000;
+            margin-right: 15px;
+        }
+        .step-content h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        .step-content p {
+            margin: 5px 0 0;
+            color: #555;
+        }
+        .step-content img {
+            width: 100%;
+            max-width: 300px;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://i.imgur.com/aQQeebm.png" alt="Logo" class="logo">
+        <div class="language-dropdown">
+            <button>
+                <img src="https://flagcdn.com/us.svg" alt="English">
+                English
+            </button>
+            <div class="language-dropdown-content">
+                <a href="#" onclick="changeLanguage('en')">
+                    <img src="https://flagcdn.com/us.svg" alt="English">
+                    English
+                </a>
+                <a href="#" onclick="changeLanguage('ar')">
+                    <img src="https://flagcdn.com/ae.svg" alt="العربية">
+                    العربية
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>What is your citizenship?</h1>
+        <div class="styled-select">
+            <select id="country-select">
+                <option value="" disabled selected>Select Country</option>
+            </select>
+        </div>
+        <h2>Select reason(s) for travel to Canada</h2>
+        <div class="btn-group">
+            <button><i class="fas fa-plane"></i> Tourism Or Visit</button>
+            <button><i class="fas fa-briefcase"></i> Business</button>
+            <button><i class="fas fa-route"></i> Transit</button>
+            <button><i class="fas fa-graduation-cap"></i> Study</button>
+            <button class="continue-button"><i class="fas fa-arrow-right"></i> Continue</button>
+        </div>
+    </div>
+
+    <!-- First Table -->
+    <div class="info-table">
+        <div class="bold">Apply for your eVisa to Canada in 3 easy steps!</div>
+        <div>
+            You can apply online for a mandatory eVisa to Canada. Completing the application process takes less than 15 minutes. However, eVisa approval may take a few days, depending on your situation.
+        </div>
+    </div>
+
+    <!-- Second Table -->
+    <div class="info-table">
+        <div class="bold">How We Do It!</div>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Apply online</h3>
+                    <p>Fill out the application with the required information from your passport.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Make an online payment</h3>
+                    <p>Payment Methods are available for secure and reliable transactions.</p>
+                    <img src="https://i.imgur.com/YSMDzIX.jpeg" alt="Payment Methods">
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Check your inbox</h3>
+                    <p>Once your application is approved, your eTA will be sent to your email.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Populate country select options
+        const countries = {
+            "Arab Countries": ["Algeria", "Bahrain", "Egypt", "Iraq", "Jordan", "Kuwait", "Lebanon", "Libya", "Morocco", "Oman", "Palestine", "Qatar", "Saudi Arabia", "Somalia", "Sudan", "Syria", "Tunisia", "UAE", "Yemen"],
+            "European Countries": ["France", "Germany", "Italy", "Spain", "United Kingdom", "Sweden", "Norway", "Denmark", "Finland", "Netherlands", "Portugal", "Greece", "Austria", "Switzerland", "Poland"]
+        };
+
+        const countrySelect = document.getElementById("country-select");
+        for (const [group, list] of Object.entries(countries)) {
+            const optGroup = document.createElement("optgroup");
+            optGroup.label = group;
+            list.forEach(country => {
+                const option = document.createElement("option");
+                option.value = country;
+                option.textContent = country;
+                optGroup.appendChild(option);
+            });
+            countrySelect.appendChild(optGroup);
+        }
+
+        // Event listener for the Continue button
+        document.querySelector('.continue-button').addEventListener('click', function () {
+            const country = document.getElementById('country-select').value;
+            const selectedReason = document.querySelector('.btn-group button.selected');
+
+            if (!country || !selectedReason) {
+                alert('Please select your citizenship and the reason for your travel before proceeding.');
+            } else {
+                alert('Proceeding to the next step!');
+            }
+        });
+
+        // Add event listeners to reason buttons
+        const buttons = document.querySelectorAll('.btn-group button:not(.continue-button)');
+        buttons.forEach(button => {
+            button.addEventListener('click', function () {
+                buttons.forEach(btn => btn.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        function changeLanguage(lang) {
+            alert(`Language changed to: ${lang}`);
+        }
+    </script>
+</body>
+</html>
